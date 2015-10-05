@@ -10,6 +10,7 @@ module.exports = function gruntInit(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-flow');
+    grunt.loadNpmTasks('grunt-nodemon');
 
     grunt.registerTask('build', ['eslint', 'flow', 'copy']);
     grunt.registerTask('develope', ['build', 'browserSync']);
