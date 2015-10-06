@@ -4,7 +4,8 @@
   "description": "NodeJS-based collaborative skill tree",
   "main": "build/index.js",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mongoose": "*"
   },
   "devDependencies": {
     "browser-sync": "^2.9.8",

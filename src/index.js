@@ -1,8 +1,10 @@
 'use strict';
 
-const app = require('express')();
-const browserSync = require('browser-sync');
-const port = process.env.PORT || 3000;
+var app = require('express')();
+var browserSync = require('browser-sync');
+var port = process.env.PORT || 3000;
+
+require('./controllers/routes')(app); // setup routes
 
 app.listen(port, listening);
 
