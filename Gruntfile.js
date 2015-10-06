@@ -1,9 +1,10 @@
 module.exports = function gruntInit(grunt) {
     grunt.initConfig({
-        eslint: {target: ['src/index.js']},
-        flow: {files: {}},
         browserSync: {dev: {options: {proxy: 'localhost:3000'}}},
-        copy: {build: {files: [{src: ['src/index.js'], dest: 'build/'}]}}
+        copy:    {build: {cwd: 'src/', expand: true, src: ['index.js'], dest: 'dist/'}},
+        eslint:  {target: ['src/index.js']},
+        flow:    {files: {}},
+        nodemon: {dev: {script: 'dist/index.js'}}
     });
 
     grunt.loadNpmTasks('grunt-browser-sync');
@@ -13,5 +14,5 @@ module.exports = function gruntInit(grunt) {
     grunt.loadNpmTasks('grunt-nodemon');
 
     grunt.registerTask('build', ['eslint', 'flow', 'copy']);
-    grunt.registerTask('develope', ['build', 'browserSync']);
+    grunt.registerTask('develope', ['build', 'nodemon', 'browserSync']);
 };
