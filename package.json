@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "dependencies": {
     "express": "^4.13.3",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "mongoose": "*"
   },
   "devDependencies": {
     "browser-sync": "^2.9.8",
