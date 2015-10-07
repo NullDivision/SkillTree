@@ -9,6 +9,7 @@ import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
 import * as routes from './controllers/routes';
+import users from './controllers/users';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -27,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.set('view engine', 'jade');
+app.use('/api/v1/user', users);
 routes(app); // setup routes
 app.listen(port);
 console.log('Magic happens on port: ' + port);
