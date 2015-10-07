@@ -1,14 +1,7 @@
 module.exports = function gruntInit(grunt) {
     grunt.initConfig({
-        browserSync: {
-            server: {
-                bsFiles: {src: 'views/**/*.jade'},
-                options: {injectChanges: false, proxy: 'localhost:9000', reloadDelay: 1000}
-            }
-        },
-        concurrent: {dev: {tasks: ['browserSync', 'nodemon', 'watch'], options: {logConcurrentOutput: true}}},
-        copy:       {build: {cwd: 'src/', expand: true, src: ['index.js'], dest: 'dist/'}},
-        eslint:     {target: ['src/index.js']},
+        copy:       {build: {cwd: 'src/', expand: true, src: ['**/*.js'], dest: 'dist/'}},
+        eslint:     {target: ['src/**/*.js']},
         flow:       {files: {}},
         nodemon:    {
             dev: {
@@ -35,5 +28,5 @@ module.exports = function gruntInit(grunt) {
     grunt.loadNpmTasks('grunt-nodemon');
 
     grunt.registerTask('build', ['eslint', 'flow', 'copy']);
-    grunt.registerTask('develope', ['build', 'concurrent']);
+    grunt.registerTask('develope', ['build', 'nodemon']);
 };

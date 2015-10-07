@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var skillSchema = new mongoose.Schema({
-  name: String,
-  prerequisites: Array,
-  isPrerequisite: Boolean
+new mongoose.Schema({
+    name: String,
+    prerequisites: Array,
+    isPrerequisite: Boolean
 });
