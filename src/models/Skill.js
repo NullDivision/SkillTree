@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
-new mongoose.Schema({
+const skillSchema = new mongoose.Schema({
     name: String,
     prerequisites: Array,
     isPrerequisite: Boolean
 });
+
+module.exports = mongoose.model('Skill', skillSchema);

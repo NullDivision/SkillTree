@@ -1,7 +1,7 @@
 module.exports = function gruntInit(grunt) {
     grunt.initConfig({
         babel:   {
-            options: {experimentals: true, modules: 'commonStrict'},
+            options: { modules: 'commonStrict'},
             server: {files: [{cwd: 'src/', dest: 'dist', expand: true, ext: '.js', src: ['**/*.js']}]}
         },
         eslint:  {target: ['src/**/*.js']},

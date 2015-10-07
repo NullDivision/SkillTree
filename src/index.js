@@ -6,12 +6,28 @@
  */
 
 import * as express from 'express';
+import * as mongoose from 'mongoose';
+import * as bodyParser from 'body-parser';
+import * as routes from './controllers/routes';
 
 const port = process.env.PORT || 3000;
 const app = express();
 
-require('./controllers/routes')(app); // setup routes
+/**
+ * Connect to MongoDB.
+ */
+mongoose.connect('mongodb://localhost:27017/skillTree');
+mongoose.connection.on('error', function() {
+    console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+    process.exit(1);
+});
 
 // set configs
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.set('view engine', 'jade');
+routes(app); // setup routes
 app.listen(port);
+console.log('Magic happens on port: ' + port);

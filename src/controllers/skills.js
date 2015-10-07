@@ -1,12 +1,12 @@
-const HttpStatus = require('http-status-codes');
-const Skill = require('../models/Skill');
+import * as HttpStatus from 'http-status-codes';
+import * as Skill from '../models/Skill';
 
 /**
  * GET /skills
  *
  */
-exports.findAllSkills = function(req, res) {
-    Skill.find({}, function (err, skills) {
+export const findAllSkills = function(req, res) {
+    Skill.find({}, function(err, skills) {
         res.send(skills);
     });
 };
@@ -15,11 +15,11 @@ exports.findAllSkills = function(req, res) {
  * GET /skills/id
  *
  */
-exports.findSkill = function(req, res) {
+export const findSkill = function(req, res) {
     var skillToFind = {
         _id: req.params.id
     };
-    Skill.findOne(skillToFind, function (err, skill) {
+    Skill.findOne(skillToFind, function(err, skill) {
         if (err) {
             res.json('Not found', 404);
         } else {
@@ -32,9 +32,10 @@ exports.findSkill = function(req, res) {
  * POST /skills
  *
  */
-exports.addSkill = function(req, res) {
+export const addSkill = function(req, res) {
     var skillToAdd = new Skill(req.body);
-    skillToAdd.save({}, function (err) {
+    console.log(req.body);
+    skillToAdd.save({}, function(err) {
         if (err) {
             if (err.code === 11000) {
                 res.send(HttpStatus.CONFLICT);
@@ -52,12 +53,12 @@ exports.addSkill = function(req, res) {
  * PUT /skills/id
  *
  */
-exports.updateSkill = function(req, res) {
+export const updateSkill = function(req, res) {
     var skillToUpdate = {
-            _id: req.params.idSkill
+            _id: req.params.id
         },
         updatedSkill = req.body;
-    Skill.update(skillToUpdate, updatedSkill, function (err) {
+    Skill.update(skillToUpdate, updatedSkill, function(err) {
         if (err) {
             res.send(HttpStatus.BAD_REQUEST);
         } else {
@@ -70,10 +71,12 @@ exports.updateSkill = function(req, res) {
  * DELETE /skills/id
  *
  */
-exports.deleteSkill = function(req, res) {
-    var skillToDelete = {_id: req.params.idSkill};
+export const deleteSkill = function(req, res) {
+    var skillToDelete = {
+        _id: req.params.id
+    };
 
-    Skill.remove(skillToDelete, function (err) {
+    Skill.remove(skillToDelete, function(err) {
         if (err) {
             res.send(HttpStatus.BAD_REQUEST);
         } else {
