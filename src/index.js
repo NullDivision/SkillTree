@@ -1,3 +1,9 @@
+/**
+ * App kernel
+ *
+ * @version 0.0.1
+ */
+
 'use strict'; //eslint-disable-line
 
 const app = require('express')();
