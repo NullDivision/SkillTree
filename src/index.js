@@ -1,18 +1,13 @@
 'use strict';
 
 const app = require('express')();
-const browserSync = require('browser-sync');
 const port = process.env.PORT || 3000;
 
-app.listen(port, listening);
+// set configs
+app.set('view engine', 'jade');
 
-function listening() {
-    if (!browserSync) {
-        return false;
-    }
-
-    browserSync({
-        proxy: 'localhost:' + port,
-        files: ['public/**/*.{js,css}']
-    });
-}
+// admin section
+app.get('/', function (req, res) {
+    res.render('index');
+});
+app.listen(port);
