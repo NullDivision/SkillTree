@@ -2,12 +2,13 @@
  * App kernel
  *
  * @version 0.0.1
+ * @flow
  */
 
-'use strict'; //eslint-disable-line
+import * as express from 'express';
 
-const app = require('express')();
 const port = process.env.PORT || 3000;
+const app = express();
 
 require('./controllers/routes')(app); // setup routes
 
