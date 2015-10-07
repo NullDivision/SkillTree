@@ -6,6 +6,7 @@
  */
 
 import * as express from 'express';
+import users from './controllers/users';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -13,5 +14,5 @@ const app = express();
 require('./controllers/routes')(app); // setup routes
 
 // set configs
-app.set('view engine', 'jade');
+app.use('/api/v1/user', users);
 app.listen(port);
