@@ -19,7 +19,6 @@ const app = express();
  */
 mongoose.connect('mongodb://localhost:27017/skillTree');
 mongoose.connection.on('error', function() {
-    console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
     process.exit(1);
 });
 
@@ -31,4 +30,3 @@ app.use(bodyParser.urlencoded({
 app.use('/api/v1/user', users);
 routes(app); // setup routes
 app.listen(port);
-console.log('Magic happens on port: ' + port);

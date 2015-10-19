@@ -8,7 +8,9 @@
     "express": "^4.13.3",
     "http-status-codes": "^1.0.5",
     "jade": "^1.11.0",
+    "lodash": "^3.10.1",
     "mongoose": "*",
+    "node-validator": "^0.1.16",
     "touch": "^1.0.0"
   },
   "devDependencies": {
@@ -17,7 +19,7 @@
     "grunt-babel": "^5.0.3",
     "grunt-concurrent": "^2.0.3",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-eslint": "^17.2.0",
+    "grunt-eslint": "*",
     "grunt-flow": "^1.0.0",
     "grunt-nodemon": "^0.4.0"
   },
