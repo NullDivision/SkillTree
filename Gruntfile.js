@@ -9,7 +9,7 @@ module.exports = function gruntInit(grunt) {
         flow:       {files: {}},
         nodemon:    {
             dev: {
-                script:  'dist/index.js',
+                script:  'dist/server/index.js',
                 options: {
                     args:        ['dev'],
                     env:         {PORT: 9000},
