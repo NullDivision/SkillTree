@@ -28,3 +28,6 @@ node_modules
 
 # Compiled files
 dist/
+
+# IDE files
+skilltree.sublime-*
