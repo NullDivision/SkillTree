@@ -1,0 +1,29 @@
+{
+  "name": "skill-tree",
+  "description": "NodeJS-based collaborative skill tree",
+  "main": "dist/client/index.html",
+  "authors": [
+    "NullDivision <penumbra.scilicet@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "skill-tree"
+  ],
+  "homepage": "https://github.com/NullDivision/SkillTree",
+  "moduleType": [
+    "amd",
+    "es6"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0"
+  }
+}
