@@ -5,7 +5,11 @@ module.exports = function gruntInit(grunt) {
             server:  {files: [{cwd: 'src/', dest: 'dist', expand: true, ext: '.js', src: ['**/*.js']}]}
         },
         browserSync: {bsFiles: {src: 'dist/client/index.html', options: {server: './dist/client/'}}},
-        concurrent:  {tasks: ['nodemon', 'watch', 'browserSync'], options: {logConcurrentOutput: true}},
+        concurrent:  {
+            client:  ['nodemon', 'watch', 'browserSync'],
+            server:  ['nodemon', 'watch'],
+            options: {logConcurrentOutput: true}
+        },
         eslint:      {target: ['src/**/*.js']},
         flow:        {files: {}},
         minifyHtml:  {dist: {files: {'dist/client/index.html': 'src/client/index.html'}}},
@@ -39,5 +43,6 @@ module.exports = function gruntInit(grunt) {
     grunt.registerTask('build:client', ['minifyHtml']);
     grunt.registerTask('build:server', ['eslint', 'flow', 'babel']);
     grunt.registerTask('build', ['build:server', 'build:client']);
-    grunt.registerTask('develop', ['build', 'concurrent']);
+    grunt.registerTask('develop:client', ['build', 'concurrent:client']);
+    grunt.registerTask('develop:server', ['build:server', 'concurrent:server']);
 };
