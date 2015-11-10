@@ -4,25 +4,23 @@ module.exports = function gruntInit(grunt) {
             options: {experimental: true, modules: 'commonStrict'},
             server:  {files: [{cwd: 'src/', dest: 'dist', expand: true, ext: '.js', src: ['**/*.js']}]}
         },
-        browserSync: {bsFiles: {src: 'dist/client/index.html', options: {server: './dist/client/'}}},
+        browserSync: {
+            bsFiles: {src: ['dist/client/index.html', 'bower_components']},
+            options: {server: './dist/client/'},
+            routes: {'/bower_components': 'bower_components'}
+        },
         concurrent:  {
             client:  ['nodemon', 'watch', 'browserSync'],
             server:  ['nodemon', 'watch'],
             options: {logConcurrentOutput: true}
         },
-        eslint:      {target: ['src/**/*.js']},
-        flow:        {files: {}},
-        minifyHtml:  {dist: {files: {'dist/client/index.html': 'src/client/index.html'}}},
-        nodemon:     {
+        eslint:     {target: ['src/**/*.js']},
+        flow:       {files: {}},
+        minifyHtml: {dist: {files: grunt.file.expandMapping('**/*.html', 'dist/client/', {cwd: 'src/client'})}},
+        nodemon:    {
             dev: {
                 script:  'dist/server/index.js',
-                options: {
-                    args:        ['dev'],
-                    env:         {PORT: 9000},
-                    nodeArgs:    ['--debug'],
-                    watch:       ['dist'],
-                    legacyWatch: true
-                }
+                options: {args: ['dev'], env: {PORT: 9000}, nodeArgs: ['--debug'], watch: ['dist'], legacyWatch: true}
             }
         },
         watch: {

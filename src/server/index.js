@@ -18,7 +18,10 @@ const app = express();
  * Connect to MongoDB.
  */
 mongoose.connect('mongodb://localhost:27017/skillTree');
-mongoose.connection.on('error', function() {
+mongoose.connection.on('error', function(e) {
+    if (e) {
+        throw new Error(e);
+    }
     process.exit(1);
 });
 
