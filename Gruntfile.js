@@ -1,15 +1,16 @@
 module.exports = function gruntInit(grunt) {
     grunt.initConfig({
-        babel:   {
+        babel: {
             options: {experimental: true, modules: 'commonStrict'},
             server:  {files: [{cwd: 'src/', dest: 'dist', expand: true, ext: '.js', src: ['**/*.js']}]}
         },
         browserSync: {
-            bsFiles: {src: ['dist/client/index.html', 'bower_components']},
-            options: {server: './dist/client/'},
-            routes: {'/bower_components': 'bower_components'}
+            bsFiles: {src: ['dist/client/**/*', 'bower_components']},
+            options: {
+                server: {baseDir: './dist/client/', routes: {'/bower_components': 'bower_components'}, watchTask: true}
+            }
         },
-        concurrent:  {
+        concurrent: {
             client:  ['nodemon', 'watch', 'browserSync'],
             server:  ['nodemon', 'watch'],
             options: {logConcurrentOutput: true}
