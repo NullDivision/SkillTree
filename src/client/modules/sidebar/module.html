@@ -9,7 +9,7 @@
 
     <template>
         <figure>
-            <iron-image src="{{avatar}}" sizing="cover" preload fade placeholder="assets/avatar.svg"><iron-image/>
+            <iron-image src="{{avatar}}" sizing="cover" preload fade placeholder="{{placeholder}}"><iron-image/>
         </figure>
 
         <nav>
@@ -23,6 +23,10 @@
     </template>
 
     <script>
-        Polymer({is: 'page-sidebar', properties: {avatar: String}});
+        Polymer({
+            is:         'page-sidebar',
+            properties: {avatar: String},
+            ready: function () {this.placeholder = this.resolveUrl('./assets/avatar.svg')}
+        });
     </script>
 </dom-module>
