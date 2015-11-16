@@ -1,14 +1,28 @@
-<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/polymer/polymer.html" />
+<link rel="import" href="/bower_components/iron-image/iron-image.html" />
 
 <dom-module id="page-sidebar">
-    <template>
-        <Flag />
+    <style>
+        iron-image {height: 200px; width: 200px;}
+        ul {list-style: none;}
+    </style>
 
-        <Navbar />
+    <template>
+        <figure>
+            <iron-image src="{{avatar}}" sizing="cover" preload fade placeholder="assets/avatar.svg"><iron-image/>
+        </figure>
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Skills</li>
+                <li>Users</li>
+                <li>Logout</li>
+            </ul>
+        </nav>
     </template>
 
     <script>
-        Polymer({is: 'page-sidebar'});
+        Polymer({is: 'page-sidebar', properties: {avatar: String}});
     </script>
 </dom-module>
-

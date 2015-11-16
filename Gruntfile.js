@@ -15,6 +15,9 @@ module.exports = function gruntInit(grunt) {
             server:  ['nodemon', 'watch'],
             options: {logConcurrentOutput: true}
         },
+        copy: {
+            dist: {files: [{expand: true, cwd: 'src/client/', src: ['./**/assets/**/*'], dest: 'dist/client/'}]}
+        },
         eslint:     {target: ['src/**/*.js']},
         flow:       {files: {}},
         minifyHtml: {dist: {files: grunt.file.expandMapping('**/*.html', 'dist/client/', {cwd: 'src/client'})}},
@@ -25,7 +28,7 @@ module.exports = function gruntInit(grunt) {
             }
         },
         watch: {
-            client: {files: 'src/client/**/*', tasks: ['minifyHtml']},
+            client: {files: 'src/client/**/*', tasks: ['minifyHtml', 'copy']},
             server: {files: 'src/server/**/*.js', tasks: ['build:server']}
         }
     });
@@ -33,13 +36,14 @@ module.exports = function gruntInit(grunt) {
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-flow');
     grunt.loadNpmTasks('grunt-minify-html');
     grunt.loadNpmTasks('grunt-nodemon');
 
-    grunt.registerTask('build:client', ['minifyHtml']);
+    grunt.registerTask('build:client', ['minifyHtml', 'copy']);
     grunt.registerTask('build:server', ['eslint', 'flow', 'babel']);
     grunt.registerTask('build', ['build:server', 'build:client']);
     grunt.registerTask('develop:client', ['build', 'concurrent:client']);
