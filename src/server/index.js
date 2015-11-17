@@ -8,8 +8,8 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
-import * as routes from './controllers/routes';
 import users from './controllers/users';
+import skills from './controllers/skills';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -27,9 +27,9 @@ mongoose.connection.on('error', function(e) {
 
 // set configs
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.use('/api/v1/user', users);
-routes(app); // setup routes
+app.use('/api/v1/skills', skills);
+
 app.listen(port);

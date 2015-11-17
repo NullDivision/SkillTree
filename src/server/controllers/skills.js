@@ -1,24 +1,37 @@
+/**
+ * Skills API controller
+ *
+ * @version 0.0.2
+ * @flow
+ */
+
+import * as express from 'express';
 import * as HttpStatus from 'http-status-codes';
 import * as Skill from '../models/Skill';
 
+const router = express.Router();
+
 /**
- * GET /skills
+ * Get all skills
  *
+ * @param  {Object} req
+ * @param  {Object} res
  */
-export const findAllSkills = function(req, res) {
+router.get('/', function (req, res) {
     Skill.find({}, function(err, skills) {
         res.send(skills);
     });
-};
+});
 
 /**
- * GET /skills/id
+ * Get skill by ID
  *
+ * @param  {Object} req
+ * @param  {Object} res
  */
-export const findSkill = function(req, res) {
-    var skillToFind = {
-        _id: req.params.id
-    };
+router.get('/:id', function(req, res) {
+    var skillToFind = {_id: req.params.id};
+
     Skill.findOne(skillToFind, function(err, skill) {
         if (err) {
             res.json('Not found', 404);
@@ -26,15 +39,17 @@ export const findSkill = function(req, res) {
             res.json(skill);
         }
     });
-};
+});
 
 /**
- * POST /skills
+ * Add new skill
  *
+ * @param  {Object} req
+ * @param  {Object} res
  */
-export const addSkill = function(req, res) {
+router.post('/', function(req, res) {
     var skillToAdd = new Skill(req.body);
-    console.log(req.body);
+
     skillToAdd.save({}, function(err) {
         if (err) {
             if (err.code === 11000) {
@@ -47,13 +62,15 @@ export const addSkill = function(req, res) {
             res.send(HttpStatus.OK);
         }
     });
-};
+});
 
 /**
- * PUT /skills/id
+ * Update skill
  *
+ * @param  {Object} req
+ * @param  {Object} res
  */
-export const updateSkill = function(req, res) {
+router.put('/:id', function(req, res) {
     var skillToUpdate = {
             _id: req.params.id
         },
@@ -65,13 +82,15 @@ export const updateSkill = function(req, res) {
             res.send(HttpStatus.OK);
         }
     });
-};
+});
 
 /**
- * DELETE /skills/id
+ * Delete skill
  *
+ * @param  {Object} req
+ * @param  {Object} res
  */
-export const deleteSkill = function(req, res) {
+router.delete('/:id', function(req, res) {
     var skillToDelete = {
         _id: req.params.id
     };
@@ -83,4 +102,6 @@ export const deleteSkill = function(req, res) {
             res.send(HttpStatus.OK);
         }
     });
-};
+});
+
+export default router;
