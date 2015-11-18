@@ -5,8 +5,8 @@
  * @flow
  */
 
-import * as express from 'express';
-import * as mongoose from 'mongoose';
+import express from 'express';
+import mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
 import users from './controllers/users';
 import skills from './controllers/skills';

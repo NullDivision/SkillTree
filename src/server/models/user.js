@@ -6,7 +6,7 @@
  * @flow
  */
 
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 const USER_SCHEMA = new mongoose.Schema({name: String, role: {type: String, enum: ['ADMIN', 'USER']}, skills: []});
 

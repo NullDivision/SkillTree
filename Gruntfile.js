@@ -1,6 +1,7 @@
 module.exports = function gruntInit(grunt) {
     grunt.initConfig({
         babel: {
+            options: {plugins: ['transform-es2015-modules-commonjs']},
             server:  {files: [{cwd: 'src/', dest: 'dist', expand: true, ext: '.js', src: ['**/*.js']}]}
         },
         browserSync: {
