@@ -18,7 +18,7 @@ module.exports = function gruntInit(grunt) {
         copy: {
             dist: {
                 files: [
-                    {expand: true, cwd: 'src/client/modules', src: ['./**/assets/**/*'], dest: 'dist/client/modules'}
+                    {expand: true, cwd: 'src/client/modules', src: ['./**/assets/**/*.svg'], dest: 'dist/client/modules'}
                 ]
             }
         },

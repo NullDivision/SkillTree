@@ -1,7 +1,8 @@
 <link rel="import" href="/bower_components/polymer/polymer.html" />
 <link rel="import" href="/bower_components/iron-image/iron-image.html" />
-<link rel="import" href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html" />
 <link rel="import" href="/bower_components/paper-menu/paper-menu.html" />
+<link rel="import" href="/bower_components/paper-styles/classes/typography.html">
 
 <dom-module id="page-sidebar">
     <link rel="import" type="css" href="assets/sidebar.css" />
@@ -11,13 +12,11 @@
             <iron-image src="{{avatar}}" sizing="cover" preload fade placeholder="{{placeholder}}"><iron-image/>
         </figure>
 
-        <paper-menu role="menu" class="layout vertical">
-            <div class="layout vertical">
-                <paper-item>Home</paper-item>
-                <paper-item>Skills</paper-item>
-                <paper-item>Users</paper-item>
-                <paper-item>Logout</paper-item>
-            </div>
+        <paper-menu role="menu" class="main-menu">
+            <paper-item role="option">Home</paper-item>
+            <paper-item role="option">Skills</paper-item>
+            <paper-item role="option">Users</paper-item>
+            <paper-item role="option">Logout</paper-item>
         </paper-menu>
     </template>
 

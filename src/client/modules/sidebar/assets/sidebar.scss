@@ -23,7 +23,7 @@ $critical-usage-threshold: 100;
     width: 280px;
     background-color: $color-primary-1;
 
-    * {height: 50%;}
+    * {height: 100%;}
     figure {
         background-color: white;
         display: block;
@@ -37,5 +37,9 @@ $critical-usage-threshold: 100;
             width: 200px;
         }
     }
-    paper-item {}
+    paper-item {
+        cursor: pointer;
+        @apply(--layout-center);
+        @apply(--layout-vertical);
+    }
 }
