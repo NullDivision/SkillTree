@@ -16,7 +16,11 @@ module.exports = function gruntInit(grunt) {
             options: {logConcurrentOutput: true}
         },
         copy: {
-            dist: {files: [{expand: true, cwd: 'src/client/', src: ['./**/assets/**/*'], dest: 'dist/client/'}]}
+            dist: {
+                files: [
+                    {expand: true, cwd: 'src/client/modules', src: ['./**/assets/**/*'], dest: 'dist/client/modules'}
+                ]
+            }
         },
         eslint:     {target: ['src/**/*.js']},
         flow:       {files: {}},
@@ -27,8 +31,17 @@ module.exports = function gruntInit(grunt) {
                 options: {args: ['dev'], env: {PORT: 9000}, nodeArgs: ['--debug'], watch: ['dist'], legacyWatch: true}
             }
         },
+        sass: {
+            dist: {
+                files: {
+                    'dist/client/assets/main.css': 'src/client/assets/main.scss',
+                    'dist/client/modules/sidebar/assets/sidebar.css': 'src/client/modules/sidebar/assets/sidebar.scss'
+                },
+                options: {compass: true, sourcemap: 'inline', unixNewlines: true}
+            }
+        },
         watch: {
-            client: {files: 'src/client/**/*', tasks: ['minifyHtml', 'copy']},
+            client: {files: 'src/client/**/*', tasks: ['minifyHtml', 'sass', 'copy']},
             server: {files: 'src/server/**/*.js', tasks: ['build:server']}
         }
     });
@@ -37,14 +50,16 @@ module.exports = function gruntInit(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-flow');
     grunt.loadNpmTasks('grunt-minify-html');
     grunt.loadNpmTasks('grunt-nodemon');
 
-    grunt.registerTask('build:client', ['minifyHtml', 'copy']);
-    grunt.registerTask('build:server', ['eslint', 'flow', 'babel']);
+    grunt.registerTask('check', ['eslint', 'flow']);
+    grunt.registerTask('build:client', ['minifyHtml', 'sass', 'copy']);
+    grunt.registerTask('build:server', ['babel']);
     grunt.registerTask('build', ['build:server', 'build:client']);
     grunt.registerTask('develop:client', ['build', 'concurrent:client']);
     grunt.registerTask('develop:server', ['build:server', 'concurrent:server']);

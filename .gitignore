@@ -32,3 +32,6 @@ dist/
 
 # IDE files
 skilltree.sublime-*
+
+# Sass files
+.sass-cache

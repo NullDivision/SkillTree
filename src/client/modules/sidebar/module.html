@@ -1,32 +1,31 @@
 <link rel="import" href="/bower_components/polymer/polymer.html" />
 <link rel="import" href="/bower_components/iron-image/iron-image.html" />
+<link rel="import" href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
+<link rel="import" href="/bower_components/paper-menu/paper-menu.html" />
 
 <dom-module id="page-sidebar">
-    <style>
-        iron-image {height: 200px; width: 200px;}
-        ul {list-style: none;}
-    </style>
+    <link rel="import" type="css" href="assets/sidebar.css" />
 
     <template>
         <figure>
             <iron-image src="{{avatar}}" sizing="cover" preload fade placeholder="{{placeholder}}"><iron-image/>
         </figure>
 
-        <nav>
-            <ul>
-                <li>Home</li>
-                <li>Skills</li>
-                <li>Users</li>
-                <li>Logout</li>
-            </ul>
-        </nav>
+        <paper-menu role="menu" class="layout vertical">
+            <div class="layout vertical">
+                <paper-item>Home</paper-item>
+                <paper-item>Skills</paper-item>
+                <paper-item>Users</paper-item>
+                <paper-item>Logout</paper-item>
+            </div>
+        </paper-menu>
     </template>
 
     <script>
         Polymer({
             is:         'page-sidebar',
             properties: {avatar: String},
-            ready: function () {this.placeholder = this.resolveUrl('./assets/avatar.svg')}
+            ready:      function () {this.placeholder = this.resolveUrl('./assets/avatar.svg');}
         });
     </script>
 </dom-module>

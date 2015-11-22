@@ -1,0 +1,11 @@
+/**
+ * Main page styles
+ *
+ * @version 0.1.0
+ */
+
+// page reset
+@import 'compass/reset';
+@import 'colors';
+
+html, body {background-color: $color-primary-2; height: 100vh;}

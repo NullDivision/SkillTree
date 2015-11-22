@@ -25,6 +25,7 @@
   ],
   "dependencies": {
     "iron-image": "PolymerElements/iron-image#~1.0.3",
+    "paper-menu": "PolymerElements/paper-menu#~1.2.0",
     "polymer": "Polymer/polymer#^1.2.0"
   }
 }

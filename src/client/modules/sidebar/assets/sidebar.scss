@@ -1,0 +1,41 @@
+/**
+ * Sidebar styles
+ *
+ * @version 0.1.0
+ */
+
+$graceful-usage-threshold: 100;
+$critical-usage-threshold: 100;
+
+@import 'compass/css3/box-shadow';
+@import 'compass/css3/flexbox';
+@import 'compass/utilities/general/clearfix';
+@import '../../../assets/colors';
+
+:host {
+    @include box-shadow(rgba(black, 0.2) 3px 0 10px);
+    @include clearfix;
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-grow(1);
+
+    height: 100vh;
+    width: 280px;
+    background-color: $color-primary-1;
+
+    * {height: 50%;}
+    figure {
+        background-color: white;
+        display: block;
+        height: 240px;
+
+        > iron-image {
+            background-color: #000;
+            border-radius: 100px;
+            height: 200px;
+            margin: 20px 40px;
+            width: 200px;
+        }
+    }
+    paper-item {}
+}
